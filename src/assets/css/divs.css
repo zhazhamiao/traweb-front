@@ -1,0 +1,19 @@
+/*  这里写点div的样式 */
+.title-line {
+  width: 980px;
+  height: 28px;
+  margin: 0 auto;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.title-line .tit {
+  height: 56px;
+  line-height: 56px;
+  margin: 0 auto;
+  padding: 0 20px;
+  font-size: 40px;
+  background: #fff;
+  text-align: center;
+}

@@ -1,0 +1,27 @@
+/*.van-nav-bar {*/
+/*  height: 35px;*/
+/*  line-height: inherit;*/
+/*}*/
+/*.van-nav-bar__title {*/
+/*  font-family: '微软雅黑', serif;*/
+/*  margin: auto;*/
+/*  height: 30px;*/
+/*}*/
+.van-search {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  border-bottom: 1px #7232dd double;
+  border-top: 1px #7232dd double;
+}
+
+.van-tabbar {
+  position: absolute;
+}
+
+#chatRoom .el-textarea__inner {
+  resize: none;
+  border-radius: 15px;
+  font-size: 16px;
+}
+
