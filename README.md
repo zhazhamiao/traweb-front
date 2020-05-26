@@ -5,7 +5,7 @@
 ## 技术栈
 前端: vue + vuex + vue-router + webpack + element-ui + vant
 ui主要是使用vant，element只引入部分需要的组件
-##项目运行
+## 项目运行
 
 ```
 npm install
