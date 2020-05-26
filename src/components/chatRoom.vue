@@ -1,10 +1,10 @@
 <template>
   <div id="chatRoom">
-    <el-card shadow="always" v-if="$route.params.item"
+    <el-card v-if="$route.params.item" shadow="always"
              body-style="padding:1px;margin-bottom:12px">
-      <van-image
-        width="100" height="100"
-        :src="axios.defaults.baseURL+$route.params.item.img"/>
+          <van-image
+            width="100" height="100"
+            :src="axios.defaults.baseURL+$route.params.item.img"/>
     </el-card>
     <van-row
       id="message" v-for="(item,index) in messages" :key="index"
@@ -24,8 +24,7 @@
             </span>
           <br/>
           <div class="div-message"
-               style="float:left">{{item.msg}}
-          </div>
+               style="float:left">{{item.msg}}</div>
         </van-col>
       </div>
       <div v-else>
@@ -37,8 +36,7 @@
             </span>
           <br/>
           <div class="div-message"
-               style="background: #19b5fe;color: white;float:right">{{ item.msg }}
-          </div>
+               style="background: #19b5fe;color: white;float:right">{{ item.msg }}</div>
         </van-col>
         <van-col :span="4">
           <el-avatar

@@ -1,21 +1,50 @@
-# traweb
+## 前言
+此项目是使用vue+springBoot搭建的一个交易系统
+实际功能类似于闲鱼
+实际上是类似一个课程设计的大作业，也算是个人对目前所学的一个总结
+##技术栈
+前端: vue + vuex + vue-router + webpack + element-ui + vant
+ui主要是使用vant，element只引入部分需要的组件
+##项目运行
 
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
+npm install
+# 注意修改config/index.js下的host项
+npm run dev
+```
+##关于接口数据
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+为前后端分离的架构
+此项目的所有接口数据都来源于配套的后台系统，点进traweb-end下即可见
+##目标功能
+
+* 用户管理
+  * 登录、注册 -- 完成
+  * 权限验证 -- 完成
+  * 登录校验 -- 完成
+  * 个人信息管理
+  * 添加，修改，删除地址
+
+* 商品管理
+   * 添加商品 -- 完成
+   * 商品分类管理 --完成
+   * 通过商品的类别查询商品 -- 完成
+   * 通过商品名查询商品
+* 订单管理
+* 交流模块 -- 完成
+* 消息推送 -- 完成
+* 个人中心 -- 完成
+* 管理员模块
+
+## 部分截图
+
+![](.\static\1.png)
+
+![2](.\static\2.png)
+
+![3](.\static\3.png)
+
+##项目结构
+
+
+
