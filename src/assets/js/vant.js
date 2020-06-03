@@ -3,13 +3,15 @@ import Vue from 'vue'
 //element-ui
 import 'element-ui/lib/theme-chalk/index.css';
 import {Backtop,Icon as elIcon,Card as elCard} from 'element-ui'
-import {Avatar,Input} from "element-ui";
+import {Avatar,Input,Loading as elLoading} from "element-ui";
 
 Vue.use(Input)
 Vue.use(Avatar)
 Vue.use(elCard)
 Vue.use(Backtop)
 Vue.use(elIcon)
+Vue.use(elLoading)
+
 
 //vant按需导入
 import {Button, Form, Field, NavBar, Icon, Notify, Toast, Divider, Search} from 'vant';
@@ -34,7 +36,9 @@ import {Grid, GridItem} from 'vant';
 import {Panel} from 'vant';
 import {PullRefresh} from 'vant';
 import {Tab, Tabs} from 'vant';
+import { SubmitBar } from 'vant';
 
+Vue.use(SubmitBar);
 Vue.use(Tab);
 Vue.use(Tabs);
 Vue.use(PullRefresh);

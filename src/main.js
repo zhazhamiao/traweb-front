@@ -66,19 +66,19 @@ new Vue({
       }).then(response => {
         //console.log(response.data)
         store.commit("setUser", user);
-        store.commit("setUid",response.data.id);
-      })
+        store.commit("setUid", response.data.id);
 
+        //已登录 连接websocket
+        Socket.init(store.state.uid);
+        Socket.onMessage((response) => {
+          store.commit("addMessage", response);
+        })
+        store.state.socket = Socket;
+      })
     } else {
       Notify({type: 'warning', message: '尚未登录,正在跳转至登录界面'});
       await router.push({path: '/login'})
     }
 
-    //已登录 连接websocket
-    Socket.init(store.state.uid);
-    Socket.onMessage((response) => {
-      store.commit("addMessage",response);
-    })
-    store.state.socket = Socket;
   }
 });

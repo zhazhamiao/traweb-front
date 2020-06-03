@@ -1,21 +1,22 @@
 ## 前言
-此项目是使用vue+springBoot搭建的一个交易系统
-实际功能类似于闲鱼
-实际上是类似一个课程设计的大作业，也算是个人对目前所学的一个总结
-##技术栈
-前端: vue + vuex + vue-router + webpack + element-ui + vant
+此项目是使用vue+springBoot搭建的一个交易系统  
+实际功能类似于闲鱼  
+实际上是类似一个课程设计的大作业，也算是个人对目前所学的一个总结  
+## 技术栈
+前端: vue + vuex + vue-router + webpack + element-ui + vant  
 ui主要是使用vant，element只引入部分需要的组件
-##项目运行
+
+## 项目运行
 
 ```
 npm install
 # 注意修改config/index.js下的host项
 npm run dev
 ```
-##关于接口数据
+## 关于接口数据
 
-为前后端分离的架构
-此项目的所有接口数据都来源于配套的后台系统，点进traweb-end下即可见
+为前后端分离的架构  
+此项目的所有接口数据都来源于配套的后台系统，点进traweb-end下即可见 
 ##目标功能
 
 * 用户管理

@@ -107,6 +107,7 @@
         }).then(response => {
           if (response.data.status === "success") {
             Notify({type: 'success', message: response.data.msg});
+            this.$router.push({path:'/login'})
           } else if (response.data.status === "failed") {
             Notify({type: 'warning', message: response.data.msg});
           }
@@ -128,5 +129,8 @@
     top: 47px;
     bottom: 0;
     left: 0;
+  }
+  .van-field {
+    background-color: rgba(255, 255, 255, 0.4)
   }
 </style>

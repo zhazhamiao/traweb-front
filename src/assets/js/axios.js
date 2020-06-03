@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Toast from "vant/lib/Toast";
 
-axios.defaults.baseURL = 'http://192.168.43.142:8080/traweb';
+axios.defaults.baseURL = 'http://47.95.35.226:8080';
 //用于解决前后端session id 不一致
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';

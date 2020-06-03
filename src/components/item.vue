@@ -30,16 +30,17 @@
           </van-cell>
         </van-cell-group>
         <van-panel :title="item.description" class="item_description"/>
+        <br/><br/><br/>
       </div>
     </transition>
     <van-goods-action>
-      <van-goods-action-icon icon="chat-o" text="交流" @click="onChat"/>
       <van-goods-action-icon icon="star-o" text="收藏" @click=""/>
+      <van-goods-action-icon icon="chat-o" text="交流" @click="onChat"/>
       <van-goods-action-button
         type="warning"
-        text="我想要"
-        @click=""
-        color="linear-gradient(to right, #30cfd0 0%, #330867 100%)"
+        text="我有意向"
+        @click="$router.push({name:'settle',params:{item: item}})"
+        color="linear-gradient(to right, #c71d6f 0%, #d09693 100%)"
       />
     </van-goods-action>
   </div>
@@ -131,7 +132,8 @@
   }
 
   .van-goods-action {
-    position: absolute;
+    position: fixed;
+    bottom: 0;
   }
 
   .el-card {

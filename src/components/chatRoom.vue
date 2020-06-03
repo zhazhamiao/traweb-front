@@ -1,10 +1,34 @@
 <template>
   <div id="chatRoom">
+    <!-- 如果是从商品列表点进去的 显示商品链接 -->
     <el-card v-if="$route.params.item" shadow="always"
-             body-style="padding:1px;margin-bottom:12px">
-          <van-image
-            width="100" height="100"
-            :src="axios.defaults.baseURL+$route.params.item.img"/>
+             body-style="padding:1px">
+      <van-card
+        :key="$route.params.item.id"
+        :thumb="axios.defaults.baseURL+$route.params.item.img"
+        style="padding: 0px 5px"
+      >
+        <template #title>
+          <van-col offset="1" span="11">
+            <br/>
+            <span style="font-weight: bolder;font-size: 20px">
+              ¥{{$route.params.item.price}}
+            </span>
+          </van-col>
+        </template>
+        <template #bottom>
+          <van-row>
+            <van-col offset="1" span="11">
+              <van-button size="normal" color="crimson" style="width: 100%"
+                          @click="$router.push({name:'settle',params:{item: $route.params.item}})">立即下单</van-button>
+            </van-col>
+            <van-col offset="1" span="11">
+              <van-button size="normal" color="crimson" style="width: 100%"
+                          @click="sendMessage('商品: '+$route.params.item.name)">发送链接</van-button>
+            </van-col>
+          </van-row>
+        </template>
+      </van-card>
     </el-card>
     <van-row
       id="message" v-for="(item,index) in messages" :key="index"
@@ -58,7 +82,7 @@
       </van-col>
       <van-col span="2">
         <i
-          @click="sendMessage"
+          @click="sendMessage(message)"
           class="el-icon-d-arrow-right"
           style="font-size: 34px;margin-top: 0"/>
       </van-col>
@@ -78,14 +102,14 @@
       }
     },
     methods: {
-      sendMessage() {
-        if (this.message) {
+      sendMessage(message) {
+        if (message) {
           let data = {
             toUserId: this.otherSide.id,
-            message: this.message
+            message: message
           };
           this.$store.state.socket.send(data);
-          this.messages.push({type: 'send', msg: this.message});
+          this.messages.push({type: 'send', msg: message});
           this.message = '';
         }
       }
@@ -151,6 +175,12 @@
     font-size: 15px;
     font-weight: bold;
     color: gray;
+  }
+
+  .van-card {
+    text-align: left;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
   }
 
 </style>

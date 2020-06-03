@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import cart from "./modules/cart";
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -30,6 +29,9 @@ export default new Vuex.Store({
       state.user = '';
       state.authorization = '';
       state.uid = '';
+      //清空联系人表
+      state.contactMap.clear();
+      state.socket.onClose();
     },
     setUid(state, uid) {
       state.uid = uid;
@@ -51,6 +53,8 @@ export default new Vuex.Store({
       if (!state.contactMap.has(fromUserId))
         state.contactMap.set(fromUserId, []);
     },
-
   },
+  actions: {
+
+  }
 })

@@ -1,7 +1,7 @@
 <template>
   <div id="myItem">
     <van-tabs v-model="active" sticky @click="onTabSelect" @change="onTabChange" offset-top="46">
-      <van-tab v-for="index in 4" :key="index" :title="title[index-1]">
+      <van-tab v-for="index in 3" :key="index" :title="title[index-1]">
         <van-list v-model="loading" :finished="finished" @load="onLoad">
           <van-card
             v-for="item in list"
@@ -24,8 +24,8 @@
     name: "myItem",
     data() {
       return {
-        title:['审核中','进行中','处理中','已完成'],
-        active: 0,
+        title:['审核中','进行中','已完成'],
+        active: this.$route.query.active|0,
         list: [],
         loading: false,
         finished: false,
@@ -58,10 +58,16 @@
           this.loading = false;
         })
       }
+    },
+    beforeMount() {
+      this.$store.commit("setTitle","我的商品");
     }
   }
 </script>
 
 <style scoped>
-
+.van-card {
+  text-align: left;
+  background-color: #fff;
+}
 </style>

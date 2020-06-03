@@ -13,6 +13,7 @@
           name="username"
           label="用户名"
           placeholder="请输入用户名"
+          autocomplete="off"
           :rules="[{ required: true, message:'请输入用户名'}]"
         />
         <van-field
@@ -45,6 +46,8 @@
 <script>
   import Toast from "vant/lib/Toast";
   import jwt from 'jwt-decode'
+  import Socket from "../assets/js/websocket";
+  import store from "../store";
 
   export default {
     data() {
@@ -67,14 +70,18 @@
             //this.$store.commit("setCurrentUser", response.data.userInfo);
             const token = response.data.token;
             //localStorage.setItem('eleToken',token);
-
             this.$store.commit("changeLogin", token);
             this.$store.commit("setUser", this.ruleForm.username);
             this.$store.commit("setUid",response.data.uid);
+            Socket.init(store.state.uid);
+            Socket.onMessage((response) => {
+              store.commit("addMessage", response);
+            })
+            store.state.socket = Socket;
             Toast.success('登陆成功,正在进入主页面')
             setTimeout(() => {
               this.$router.push({path: "/"});
-            }, 1500)
+            }, 1000)
           } else if (response.data.rpb.staus === "failed") {
 
           }
@@ -86,7 +93,18 @@
 </script>
 
 <style scoped>
+  #login {
+    background: url("../assets/images/background2.jpg");
+    width: 100%;
+    position: absolute;
+    top: 47px;
+    bottom: 0;
+    left: 0;
+  }
   #loginbox {
     margin-top: 20px;
+  }
+  .van-field {
+    background-color: rgba(255, 255, 255, 0.3)
   }
 </style>

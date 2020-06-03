@@ -5,7 +5,9 @@
       @click-nav="onClickNav"
       @click-item="onClickItem"
       :active-id.sync="activeId"
-      :main-active-index.sync="activeIndex">
+      :main-active-index.sync="activeIndex"
+      height="600"
+    >
     </van-tree-select>
   </div>
 </template>
@@ -63,6 +65,9 @@
           }
         })
       }
+    },
+    created() {
+      this.$store.commit("setTitle","分类选择");
     },
     beforeMount() {
       this.axios({

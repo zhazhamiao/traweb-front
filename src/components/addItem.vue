@@ -24,8 +24,8 @@
         <van-divider/>
         <van-field
           name="name"
-          label="商品名"
-          placeholder="输入商品名"
+          label="需求名称"
+          placeholder="输入一个需求名称"
           v-model="item.name"
           autocomplete="off"
           :rules="[{ required: true, message: '不能为空' }]"
@@ -69,21 +69,22 @@
         </van-row>
         <van-divider/>
         <van-row>
-          <van-col span="10" offset="2">
+          <van-col span="11" offset="1">
             <van-button
               block
               @click="typeSelectShow=true"
               native-type="button"
               size="normal"
-              color="linear-gradient(to left, #88d3ce 0%, #6e45e2 100%)"
               class="typeSelect-text"
+              style="background-color: rgba(255,255,255,0.5);"
             >
-              分类:&nbsp;{{ typeText }}
+              &nbsp;&nbsp;分类:&nbsp;&nbsp;&nbsp;{{ typeText }}
             </van-button>
           </van-col>
           <van-col span="8" offset="3">
             <van-button block round type="primary" size="normal"
                         color="linear-gradient(to right, #5ee7df 0%, #b490ca 100%)"
+                        style="font-size: 16px"
                         :disabled="enDisable">
               立即提交
             </van-button>
@@ -107,7 +108,7 @@
 
 <script>
   import Notify from "vant/lib/notify";
-  import { Dialog } from 'vant';
+  import {Dialog} from 'vant';
 
   export default {
     name: "addItem",
@@ -168,11 +169,17 @@
           processData: false,
           contentType: false
         }).then(response => {
-          if (response.status === 200) {
+          if (response.data.status === "success") {
             Dialog.alert({
-                message: '提交成功,点确认返回主页'
-            }).then(()=>{
-              this.$router.push({path:"/"})
+              message: '提交成功,点确认返回主页'
+            }).then(() => {
+              this.$router.push({path: "/"})
+            })
+          }else {
+            Dialog.alert({
+              message: '提交失败'
+            }).then(() => {
+              this.$router.push({path: "/"})
             })
           }
         }).catch(err => {
@@ -238,18 +245,32 @@
 </script>
 
 <style scoped>
+  #addItem {
+    background: url("../assets/images/background3.jpg");
+    width: 100%;
+    position: absolute;
+    top: 47px;
+    bottom: 0;
+    left: 0;
+  }
+
+  .van-field {
+    background-color: rgba(255, 255, 255, 0.5)
+  }
+
   .van-image {
     border: 2px solid #19b5fe;
   }
 
   .typeSelect-text {
-    font-family: "微软雅黑 Light",serif;
+    font-family: "微软雅黑 Light", serif;
     text-align: left;
     font-size: 16px;
     font-weight: bold;
     padding-left: 5px;
     padding-right: 5px;
   }
+
   .v-enter {
     opacity: 0;
     transform: translateY(100%);

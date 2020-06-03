@@ -4,7 +4,6 @@
       <van-nav-bar
         @click-left="onclickLeft"
         @click-right="onclickRight"
-        style="background: ghostwhite"
       >
         <template #title>
           <span class="title">{{ $store.state.title }}</span>
@@ -66,10 +65,10 @@
   }
 
   .title {
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 17px;
     font-family: Arial, Helvetica, 'Microsoft YaHei', Tohoma, sans-serif;
-    color: #6fa7fa;
+    color: #2b2b2b;
   }
 
 </style>

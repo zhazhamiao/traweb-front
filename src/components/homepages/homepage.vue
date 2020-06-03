@@ -4,7 +4,7 @@
       <router-view></router-view>
     </transition>
 
-    <van-tabbar v-model="active" @change="onChange">
+    <van-tabbar v-model="active" @change="onChange" style="position: fixed">
       <van-tabbar-item name="home" icon="wap-home">首页</van-tabbar-item>
       <van-tabbar-item name="types" icon="ascending">分类</van-tabbar-item>
       <van-tabbar-item name="add">
@@ -12,7 +12,7 @@
           <van-button icon="plus" round color="linear-gradient(to right, #4bb0ff, #6149f6)" @click="handlerAdd"/>
         </template>
       </van-tabbar-item>
-      <van-tabbar-item name="chat" icon="chat" >消息</van-tabbar-item>
+      <van-tabbar-item name="messages" icon="chat" >消息</van-tabbar-item>
       <van-tabbar-item name="account" icon="manager">我的</van-tabbar-item>
     </van-tabbar>
 
@@ -41,8 +41,8 @@
           }
         } else if (index === "types") {
           this.$router.push({path: "/types"})
-        } else if (index === "chat") {
-          this.$router.push({path: "/chat"})
+        } else if (index === "messages") {
+          this.$router.push({path: "/messages"})
         }
       },
       handlerItemActive(val) {
@@ -54,6 +54,8 @@
           this.setTitle('账户')
         } else if (val === "/types") {
           this.active = "types"
+        } else if (val === "/messages") {
+          this.active = "messages"
         }
       },
       handlerAdd() {

@@ -1,6 +1,6 @@
-import da from "element-ui/src/locale/lang/da";
+import axios from 'axios'
 
-const baseUrl = 'ws://192.168.43.142:8080/traweb/websocket'
+const baseUrl = 'ws://47.95.35.226:8080/websocket'
 
 let Socket = {
   WS :'',
@@ -11,7 +11,6 @@ let Socket = {
       message: 'msg'
     };
     this.onError();
-    this.onClose();
   },
 
   send(data) {
@@ -36,8 +35,7 @@ let Socket = {
   },
 
   onClose() {
-    this.WS.onclose = (res) => {
-    };
+    this.WS.close();
   }
 }
 
