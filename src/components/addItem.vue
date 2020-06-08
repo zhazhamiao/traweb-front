@@ -169,19 +169,11 @@
           processData: false,
           contentType: false
         }).then(response => {
-          if (response.data.status === "success") {
-            Dialog.alert({
-              message: '提交成功,点确认返回主页'
-            }).then(() => {
-              this.$router.push({path: "/"})
-            })
-          }else {
-            Dialog.alert({
-              message: '提交失败'
-            }).then(() => {
-              this.$router.push({path: "/"})
-            })
-          }
+          Dialog.alert({
+            message: '提交成功,点确认返回主页'
+          }).then(() => {
+            this.$router.push({path: "/"})
+          })
         }).catch(err => {
           Notify({type: 'danger', message: err.response.data.message})
         })

@@ -88,7 +88,9 @@
         })
       },
     },
-
+    beforeMount() {
+      this.$store.commit("setTitle","登录");
+    }
   }
 </script>
 
