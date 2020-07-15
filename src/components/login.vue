@@ -6,6 +6,7 @@
     </van-divider>
     <img src="@/assets/images/login.jpg" style="width: 250px;height: 250px"/>
     <div id="loginbox" style="margin-top: 40px">
+      <!-- 登录表单 -->
       <van-form @submit="login">
         <van-field
           v-model="ruleForm.username"
@@ -33,6 +34,7 @@
             </van-button>
           </van-col>
           <van-col span="8" offset="2">
+            <!-- 跳转到注册界面 -->
             <van-button type="info" size="normal" block round to="register">
               注册
             </van-button>
@@ -60,30 +62,35 @@
       }
     },
     methods: {
+      // 发送到服务端进行校验
       login() {
         this.axios({
           method: "post",
           url: '/account/login',
           data: this.$qs.stringify(this.ruleForm)
         }).then(response => {
+          // 登录成功
           if (response.data.rpb.status === "success") {
             //this.$store.commit("setCurrentUser", response.data.userInfo);
             const token = response.data.token;
-            //localStorage.setItem('eleToken',token);
+            // 通过vuex将登录状态保存到全局
             this.$store.commit("changeLogin", token);
             this.$store.commit("setUser", this.ruleForm.username);
             this.$store.commit("setUid",response.data.uid);
+            // 连接websocket
             Socket.init(store.state.uid);
+            // 接收消息时回调vuex中addMessage方法
             Socket.onMessage((response) => {
               store.commit("addMessage", response);
             })
             store.state.socket = Socket;
-            Toast.success('登陆成功,正在进入主页面')
+            Toast.success('登录成功,正在进入主页面')
             setTimeout(() => {
               this.$router.push({path: "/"});
             }, 1000)
-          } else if (response.data.rpb.staus === "failed") {
-
+          } else {
+            // 登录失败
+            Toast.fail('登录失败');
           }
         })
       },

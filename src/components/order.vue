@@ -93,7 +93,7 @@
         <van-col offset="10" span="6">
           <van-button round style="width: 100%" size="normal" color="crimson" @click="onCancel">取消订单</van-button>
         </van-col>
-        <van-col offset="1" span="6" v-if="seller.id&&seller.id!==$store.state.uid">
+        <van-col offset="1" span="6" v-if="buyer.id&&buyer.id!==$store.state.uid">
           <van-button round style="width: 100%" size="normal" color="crimson" @click="onComplete">完成订单</van-button>
         </van-col>
       </van-row>

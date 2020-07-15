@@ -28,6 +28,7 @@
       onClickNav(index) {
         /*
         * 根据index拿到一级分类的id，然后获取下属的二级分类
+        * 添加一个判断是为了防止反复加载
         * */
         if (this.items[index].children.length === 0) {
           this.axios({
@@ -69,6 +70,7 @@
     created() {
       this.$store.commit("setTitle","分类选择");
     },
+    // 在vue组件挂载前从服务端请求所有一级分类项
     beforeMount() {
       this.axios({
         method: "GET",
@@ -76,12 +78,18 @@
       }).then(response => {
         let categories = response.data;
         categories.forEach((data) => {
+          /*
+          * @param text 名称
+          * @param id 数据库中对应的编号
+          * @param children 属于该一级分类的二级分类
+          * */
           this.items.push({
             text: data.name,
             id: data.id,
             children: []
           })
         })
+        // 保证从其他页面返回后所选项与跳转前一致
         let index = sessionStorage.getItem("activeIndex")|0;
         this.onClickNav(index);
       })

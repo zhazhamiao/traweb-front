@@ -60,7 +60,7 @@
       }
     },
     beforeMount() {
-      this.$store.commit("setTitle","我的商品");
+      this.$store.commit("setTitle","我的需求");
     }
   }
 </script>

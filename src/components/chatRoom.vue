@@ -24,7 +24,7 @@
             </van-col>
             <van-col offset="1" span="11">
               <van-button size="normal" color="crimson" style="width: 100%"
-                          @click="sendMessage('商品: '+$route.params.item.name)">发送链接</van-button>
+                          @click="sendMessage('title: '+$route.params.item.name)">发送链接</van-button>
             </van-col>
           </van-row>
         </template>

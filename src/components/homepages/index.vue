@@ -21,12 +21,18 @@
       </van-swipe-item>
     </van-swipe>
     <br/>
+    <!-- vant List组件 -->
     <van-list
       v-model="loading"
       :finished="finished"
       finished-text="没有更多了"
       @load="onLoad">
-      <van-col span="12" v-for="(item,index) in list" :key="item.itemId" @click="$router.push({name:'item' ,query:{id:item.id}})">
+      <!-- 用v-for遍历list数组展示在页面上 -->
+      <!-- 为每个展示项绑定一个点击事件，每次点击后进入对应的展示页 -->
+      <van-col
+        span="12" v-for="(item,index) in list" :key="item.itemId"
+        @click="$router.push({name:'item' ,query:{id:item.id}})">
+        <!-- 使用element-ui card组件将信息聚合在卡片容器中展示 -->
         <el-card body-style=" padding: 2px">
           <img :src="axios.defaults.baseURL+item.img"
                class="image">
@@ -41,6 +47,7 @@
         </el-card>
       </van-col>
     </van-list>
+    <el-backtop/>
   </div>
 </template>
 
@@ -86,20 +93,27 @@
           }
         })
       },
+      // 加载中
       onLoad() {
         this.axios({
           method: "GET",
           url: '/item/search',
+          /*
+          * @param keyword 搜索关键词。首页默认是查询所有，所以关键词
+          * @param page 页码，服务端对查询到的数据进行分页，每页大小为10
+          *        无限滑动实质上是每次传入的page+1来从服务端获取下一页的数据
+          * */
           params: {
             keyword: '',
             page: this.page
           }
         }).then(response => {
           let items = response.data;
+          // items是一个数组，遍历这个数组依次将个项压入list
           items.forEach((value) => {
             this.list.push(value)
           })
-          //加载结束
+          // 服务端返回的数据少于十个或没有 表示加载结束
           if (items.length < 10) {
             this.finished = true;
           } else {
@@ -123,6 +137,7 @@
     height: 170px;
     width: 100%;
   }
+
   .el-card {
     margin: 2px;
     border-radius: 10px;
@@ -143,9 +158,11 @@
   .clearfix:after {
     clear: both
   }
+
   .bottom {
     text-align: left;
   }
+
   .item__name {
     font-size: 15px;
     font-weight: bold;
@@ -154,6 +171,7 @@
     text-align: left;
     border-top: 1px solid gainsboro;
   }
+
   .item__price {
     padding: 2px 5px;
     text-align: left;

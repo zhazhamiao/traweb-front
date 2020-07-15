@@ -40,6 +40,11 @@
         this.axios({
           method: "GET",
           url: '/item/getItemsByCategory',
+          /*
+          * @param categoryId 通过路由的query方式传过来的id，
+          *        对应数据库中二级分类表的主键
+          * @param page 页码
+          * */
           params: {
             categoryId: this.$route.query.id,
             page: this.page

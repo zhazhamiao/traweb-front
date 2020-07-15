@@ -232,6 +232,9 @@
         })
         this.onClickNav(0);
       })
+    },
+    created() {
+      this.$store.commit("setTitle","添加需求");
     }
   }
 </script>

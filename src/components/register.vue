@@ -82,6 +82,7 @@
           })
         })
       },
+      //密码复杂度校验
       passwordValidator(val) {
         const regex = new RegExp("(?=.*[0-9])(?=.*[a-zA-Z]).{9,30}");
         if (val === "") {

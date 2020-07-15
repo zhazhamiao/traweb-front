@@ -1,9 +1,9 @@
-import axios from 'axios'
-
+// websocket url
 const baseUrl = 'ws://47.95.35.226:8080/websocket'
 
 let Socket = {
   WS :'',
+  // 初始化websocket
   init(uid) {
     this.WS = new WebSocket(baseUrl + '/' + uid);
     let data = {
@@ -12,11 +12,11 @@ let Socket = {
     };
     this.onError();
   },
-
+  // 发送消息
   send(data) {
     this.WS.send(JSON.stringify(data));
   },
-
+  // 接收消息
   onMessage(callback) {
     this.WS.onmessage = (res) => {
       try {
